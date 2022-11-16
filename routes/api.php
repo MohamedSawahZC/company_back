@@ -24,4 +24,8 @@ Route::post('basic',"App\Http\Controllers\Basic@create");
 
 Route::post('register',"App\Http\Controllers\UserController@register");
 Route::post('login',"App\Http\Controllers\UserController@login");
-Route::middleware('auth:api')->get('profile',"App\Http\Controllers\UserController@details");
+Route::post('institute',"App\Http\Controllers\Institutes@create");
+
+Route::group(['middleware'=>'auth:api'],function(){
+    Route::get('profile',"App\Http\Controllers\UserController@details");
+});
