@@ -40,7 +40,11 @@ class UserController extends Controller
 
     public function details(){
         $user = Auth::user();
-        return response()->json(['status' => 'Success','data'=>$user->name],200);
+        if (!$user){
+            return response()->json(['status' => 'Error','message'=>"No user founded"],404);
+        }else{
+            return response()->json(['status' => 'Success','data'=>$user],200);
+        }
 
     }
 }
